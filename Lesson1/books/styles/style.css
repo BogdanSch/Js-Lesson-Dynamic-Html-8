@@ -1,0 +1,33 @@
+* {
+
+    transition: all .5s ease;
+}
+
+p,
+ul {
+    height: 0px;
+    overflow: auto;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.title:after {
+    content: '+';
+    padding-left: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+ul.open {
+    height: 400px;
+}
+
+p.open {
+    height: 40px;
+}
+
+.minus.title:after {
+    content: '-';
+}
