@@ -3,12 +3,12 @@
 }
 
 .circle {
+    position: absolute;
     display: block;
     width: 60px;
     height: 60px;
     border: 6px solid red;
     border-radius: 50%;
-    position: absolute;
     top: 0;
     left: 0;
 }
