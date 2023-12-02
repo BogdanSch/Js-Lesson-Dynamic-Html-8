@@ -9,7 +9,7 @@ function magnify(imgID, zoom) {
   glass.setAttribute("class", "glass");
 
   /*вставить увеличительное стекло перед картинкой:*/
-  img.parentElement.insertBefore(glass, img);
+  img.parentElement.appendChild(glass, img);
 
   /*установить стили для background для увеличительного стекла:*/
   glass.style.backgroundImage = "url('" + img.src + "')";

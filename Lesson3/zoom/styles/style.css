@@ -12,12 +12,14 @@ img {
 }
 
 .glass {
-    position: absolute;
+    /* position: absolute; */
     border: 3px solid #000000a8;
     /* border-radius: 50%; */
     cursor: none;
     width: 100px;
     height: 100px;
-    top: 106%;
-    left: 45%;
+    display: block;
+    margin: 10px auto;
+    /* top: 106%;
+    left: 45%; */
 }
