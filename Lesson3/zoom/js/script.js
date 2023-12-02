@@ -1,62 +1,36 @@
 "use strict";
 
 function magnify(imgID, zoom) {
-  let img, glass, w, h;
-  img = document.getElementById(imgID);
+  const img = document.getElementById(imgID);
+  const glass = createMagnifierGlass(img);
 
-  /*создать увеличительное стекло:*/
-  glass = document.createElement("DIV");
-  glass.setAttribute("class", "glass");
+  img.parentElement.appendChild(glass);
 
-  /*вставить увеличительное стекло перед картинкой:*/
-  img.parentElement.appendChild(glass, img);
-
-  /*установить стили для background для увеличительного стекла:*/
-  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundImage = `url('${img.src}')`;
   glass.style.backgroundRepeat = "no-repeat";
-  glass.style.backgroundSize =
-    img.width * zoom + "px " + img.height * zoom + "px";
+  glass.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
 
-  /*найти половину ширины и высоты стекла*/
-  w = glass.style.width / 2;
-  h = glass.style.height / 2;
+  const { width: w, height: h } = glass.style;
 
-  /*обработка события перемещения мыши*/
-//   glass.addEventListener("mousemove", moveMagnifier);
   img.addEventListener("mousemove", moveMagnifier);
 
-  /*перемещение увеличительного стекла*/
   function moveMagnifier(event) {
-    let x, y;
-
-    /*предотвратить действие по умолчанию*/
     event.preventDefault();
 
-    /*получить координаты курсора*/
-    x = event.offsetX;
-    y = event.offsetY;
+    let x = event.offsetX;
+    let y = event.offsetY;
 
-    /*предотвратить позиционирование стекла далеко от картинки*/
-    if (x > img.width - w / zoom) {
-      x = img.width - w / zoom;
-    }
-    if (x < w / zoom) {
-      x = w / zoom;
-    }
-    if (y > img.height - h / zoom) {
-      y = img.height - h / zoom;
-    }
-    if (y < h / zoom) {
-      y = h / zoom;
-    }
+    x = Math.min(Math.max(x, w / zoom), img.width - w / zoom);
+    y = Math.min(Math.max(y, h / zoom), img.height - h / zoom);
 
-    /*поменять позиционирование стекла по координатам мыши:*/
-    // glass.style.left = x - w + "px";
-    // glass.style.top = y - h + "px";
-
-    /*позиционирование фона*/
-    glass.style.backgroundPosition =
-      "-" + (x * zoom - w) + "px -" + (y * zoom - h) + "px";
+    glass.style.backgroundPosition = `-${x * zoom - w}px -${y * zoom - h}px`;
   }
 }
+
+function createMagnifierGlass(img) {
+  const glass = document.createElement("DIV");
+  glass.setAttribute("class", "glass");
+  return glass;
+}
+
 magnify("wrap-image", 3);
