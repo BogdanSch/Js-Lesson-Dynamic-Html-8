@@ -1,7 +1,7 @@
 "use strict";
 
 const imagePathes = [
-  "./images/uk.jpg",
+  "./images/flowers.jpg",
   "./images/landscape-mountains.webp",
   "./images/landscape-snow.jpg",
   "./images/landscape-desert.jpg",
@@ -17,7 +17,58 @@ const previousButton = document.getElementById("prev");
 const startSlideshowButton = document.getElementById("start");
 const stopSlideshowButton = document.getElementById("stop");
 
+const effectsForm = document.forms.effects;
+// const setEffectButton = effectsForm.querySelector(".btn-set-effect");
+let effect = "none";
+
 const miniatures = document.querySelectorAll(".minies .mini");
+
+for (let i = 0; i < effectsForm.length; i++) {
+  effectsForm[i].addEventListener("change", (event) => {
+    effect = event.value;
+    if (effect) {
+      clearEffects();
+      addEffect();
+    }
+  });
+}
+// effectsForm.forEach((element) => {
+//   element.addEventListener("change", () => {
+//     effect = element.value;
+//     clearEffects();
+//     addEffect();
+//   });
+// });
+// setEffectButton.addEventListener("click", getEffect);
+
+// function getEffect() {
+//   for (let i = 0; i < effectsForm.length; i++) {
+//     if (effectsForm[i].checked) {
+//       effect = effectsForm[i].value;
+//     }
+//   }
+// }
+
+function addEffect() {
+  sliderImage.classList.add(effect);
+}
+
+function clearEffects() {
+  sliderImage.classList = {};
+}
+
+nextButton.addEventListener("click", showNextSlide);
+previousButton.addEventListener("click", showPreviousSlide);
+startSlideshowButton.addEventListener("click", startSlideshow);
+stopSlideshowButton.addEventListener("click", stopSlideshow);
+
+function startSlideshow() {
+  stopSlideshow();
+  timer = setInterval(showNextSlide, 3000);
+}
+function stopSlideshow() {
+  clearInterval(timer);
+}
 
 function showNextSlide() {
   currentSlide++;
@@ -35,23 +86,12 @@ function showPreviousSlide() {
   sliderImage.src = imagePathes[currentSlide];
 }
 
+miniatures.forEach((miniature) => {
+  miniature.addEventListener("click", showNextSlideByMiniature);
+});
+
 function showNextSlideByMiniature(event) {
   let imageMini = event.target;
   let imageFullName = imageMini.getAttribute("data-sl-img");
   sliderImage.src = `./images/${imageFullName}`;
 }
-
-nextButton.addEventListener("click", showNextSlide);
-previousButton.addEventListener("click", showPreviousSlide);
-
-startSlideshowButton.addEventListener("click", () => {
-  timer = setInterval(showNextSlide, 3000);
-});
-
-stopSlideshowButton.addEventListener("click", () => {
-  clearInterval(timer);
-});
-
-miniatures.forEach((miniature) => {
-  miniature.addEventListener("click", showNextSlideByMiniature);
-});
