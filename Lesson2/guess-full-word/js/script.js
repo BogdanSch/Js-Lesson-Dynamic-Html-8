@@ -17,6 +17,7 @@ let remainLetters;
 let attempts = 4;
 let answer = [];
 let incorrectGuesses = [];
+let isOver = false;
 
 function clearWord(randomWord) {
   answer[0] = randomWord[0];
@@ -35,6 +36,18 @@ function displayWord() {
   }`;
   countRemainWordsContainer.innerHTML = `Remain letters: ${remainLetters}`;
   incorrectGuessesContainer.innerHTML = incorrectGuesses.join(", ");
+}
+
+function checkGameStatus() {
+  if (remainLetters === 0) {
+    alert("Congratulations! You've guessed the word!");
+    isOver = true;
+  } else if (attempts === 0) {
+    alert(
+      `Sorry, you've run out of attempts. The correct word was: ${randomWord}`
+    );
+    isOver = true;
+  }
 }
 
 function playerGuess(randomWord) {
@@ -58,13 +71,7 @@ function playerGuess(randomWord) {
     inputLetter.value = "";
     displayWord();
 
-    if (remainLetters === 0) {
-      alert("Congratulations! You've guessed the word!");
-    } else if (attempts === 0) {
-      alert(
-        `Sorry, you've run out of attempts. The correct word was: ${randomWord}`
-      );
-    }
+    checkGameStatus();
   } else {
     alert("Please try again!");
   }
@@ -76,11 +83,14 @@ startGameButton.addEventListener("click", () => {
   attempts = 4;
   answer = [];
   incorrectGuesses = [];
+  isOver = false;
 
   clearWord(randomWord);
   displayWord();
 
   guessButton.addEventListener("click", () => {
-    playerGuess(randomWord);
+    if (!isOver) {
+      playerGuess(randomWord);
+    }
   });
 });
