@@ -1,0 +1,117 @@
+/* General - Start */
+@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto:wght@300;400;700&display=swap";
+
+* {
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.wrapper {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body {
+    font-family: "Montserrat", serif;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* General - End */
+.card {
+    position: relative;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 120px;
+    border: solid 2px orange;
+    background-color: rgb(228, 225, 69);
+    padding: 20px;
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 40px;
+    color: red;
+    transition: all 1s;
+    border-radius: 10px;
+}
+
+
+#real_cards,
+#played_cards {
+    border: 1px solid orange;
+    background-color: orange;
+    min-height: 300px;
+    z-index: 2;
+}
+
+
+#real_cards .card {
+    background-color: #6d695c;
+    background-size: 70px 120px;
+}
+
+
+#real_cards span {
+    display: none;
+}
+
+
+#played_cards {
+    border: 1px solid green;
+    background-color: green;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+.effect {
+    /* height: 0; */
+    opacity: 0;
+    transition: all 1s;
+    transform: translateY(100%);
+}
+
+
+.move {
+    top: 280px;
+    transition: all 0.2s;
+}
+
+
+.rotate {
+    transition: all 3s ease;
+    opacity: 0;
+    transform: translate(500px, 800px) rotate(3600deg);
+}
+
+
+#win {
+    position: absolute;
+    display: none;
+    width: 40%;
+    top: 20%;
+    left: 30%;
+    height: 60%;
+    background-color: gold;
+    color: red;
+    text-align: center;
+    font-size: 60px;
+    z-index: 9999;
+    opacity: 0;
+    box-sizing: border-box;
+    padding-top: 10%;
+    border: 2px solid red;
+    transition: all 3s;
+}
