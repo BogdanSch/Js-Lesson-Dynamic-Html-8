@@ -1,0 +1,18 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.card {
+    width: auto;
+    padding: 10px 20px;
+}
+
+.words {
+    max-width: 60%;
+    height: 400px;
+    margin: 20px auto;
+}

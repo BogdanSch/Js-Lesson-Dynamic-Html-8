@@ -1,0 +1,44 @@
+#basket {
+    position: relative;
+    width: 250px;
+    height: 450px;
+    float: right;
+    border: 1px solid;
+    padding: 10px;
+}
+
+#cart {
+    width: 250px;
+    height: 400px;
+    padding: 10px;
+    background: tan;
+    margin-right: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+#sum {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+}
+
+input[type="button"] {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.product {
+    margin: 10px;
+}
+
+.product img {
+    width: 80px;
+}
+
+.mini {
+    width: 80px;
+    display: block;
+    margin-top: 10px;
+}

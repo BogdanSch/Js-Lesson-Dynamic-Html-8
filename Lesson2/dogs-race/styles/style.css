@@ -1,0 +1,41 @@
+#dog {
+    position: relative;
+    top: 50px;
+    left: 50px;
+    width: calc(331px / 3);
+    height: 80px;
+    background-position: 0 0;
+    background-image: url("../images/dog.jpg");
+    animation: play-x infinite steps(3), play-y infinite steps(2), move forwards;
+    animation-duration: 1s, 1s, 15s;
+}
+
+@keyframes play-x {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: -331px;
+    }
+}
+
+@keyframes play-y {
+    0% {
+        background-position-y: 0px;
+    }
+
+    100% {
+        background-position-y: -160px;
+    }
+}
+
+@keyframes move {
+    0% {
+        left: 90%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
