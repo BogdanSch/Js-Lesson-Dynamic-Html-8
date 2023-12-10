@@ -7,9 +7,11 @@ scrollButton.addEventListener("click", () => {
 });
 
 window.addEventListener("scroll", () => {
-  if (document.documentElement.scrollTop > 100) {
+  if (document.documentElement.scrollTop > 200) {
     scrollButton.style.opacity = "1";
   } else {
     scrollButton.style.opacity = "0";
   }
 });
+
+
