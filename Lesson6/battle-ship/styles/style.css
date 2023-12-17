@@ -1,0 +1,54 @@
+h1 {
+    color: #1022ee;
+}
+
+#game-option {
+    display: flex;
+    width: 500px;
+    height: 100px;
+    background-color: rgb(255, 217, 0);
+    padding: 20px;
+    margin: 20px;
+    align-items: center;
+    gap: 10px;
+}
+
+#game-boards {
+    max-width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+}
+
+.ship {
+    display: flex;
+}
+
+.block{
+    width: 20px;
+    height: 20px;
+    border: 1px dotted rgb(199, 199, 199);
+}
+
+.deck {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(131, 131, 131);
+}
+
+.deck-one {
+    background-color: #ed1a1a;
+}
+
+.deck-three {
+    background-color: #72ed1a;
+}
