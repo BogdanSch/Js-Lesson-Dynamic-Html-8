@@ -1,7 +1,6 @@
 export class Board {
   width = 10;
   angle = 0;
-  shipBlocks = [];
 
   constructor(gameBoardsContainer, color, userId) {
     this.gameBoardsContainer = gameBoardsContainer;
@@ -28,18 +27,44 @@ export class Board {
     }
   }
 
-  generateShip(ship, isHorizontal) {
+  generateShip(ship, startPosition = 0, isHorizontal = Math.random() < 0.5) {
     const allBoardBlocks = document.querySelectorAll(`#${this.userId} div`);
     let randomStartIndex = Math.floor(Math.random() * allBoardBlocks.length);
+    let shipBlocks = [];
+    let startIndex = startPosition ? startPosition.substr(6) : randomStartIndex;
+
+    let validStart = isHorizontal
+      ? startIndex <= this.width * this.width - ship.length
+        ? startIndex
+        : this.width * this.width - ship.length
+      : startIndex <= this.width * this.width - this.width * ship.length
+      ? startIndex
+      : this.width * this.width - this.width * ship.length;
+
+    console.log(`Start: ${validStart}, isHorizontal: ${isHorizontal}`);
 
     for (let i = 0; i < ship.length; i++) {
-      // console.log(allBoardBlocks[randomStartIndex + i]);
+      let blockIndex = 0;
       if (isHorizontal) {
-        this.shipBlocks.push(allBoardBlocks[randomStartIndex + i]);
+        blockIndex = validStart + i;
+        shipBlocks.push(allBoardBlocks[blockIndex]);
       } else {
-        this.shipBlocks.push(allBoardBlocks[randomStartIndex + i * this.width]);
+        blockIndex = validStart + i * this.width;
+        shipBlocks.push(allBoardBlocks[blockIndex]);
       }
-      console.log(this.shipBlocks);
     }
+    const notTaken = shipBlocks.every(
+      (shipBlocks) => !shipBlocks.classList.contains("taken")
+    );
+
+    if (notTaken) {
+      shipBlocks.forEach((shipBlock) => {
+        shipBlock.classList.add(ship.name);
+        shipBlock.classList.add("taken");
+      });
+    } else {
+      this.generateShip(ship, startPosition, isHorizontal);
+    }
+    // console.log(shipBlocks);
   }
 }
