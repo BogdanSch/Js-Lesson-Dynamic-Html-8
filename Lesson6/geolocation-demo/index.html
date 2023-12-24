@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button onclick="getLocation()">getLocation</button>
+    <div id="pos"></div>
+    
+    <script>
+        const x = document.getElementById("pos");
+        console.log(navigator.geolocation);
+        function getLocation() {
+            // if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            // } else {
+            //     x.innerHTML = "Геолокация не підтримуеться вашим браузером.";
+            // }
+        }
+
+        function showPosition(position) {
+            console.log(position);
+            x.innerHTML = "Широта: " + position.coords.latitude +
+                "<br>Долгота: " + position.coords.longitude;
+        }
+
+    </script>
+</body>
+
+</html>

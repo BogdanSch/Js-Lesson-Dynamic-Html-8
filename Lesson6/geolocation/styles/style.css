@@ -1,0 +1,11 @@
+.geolocation__form {
+    display: block;
+    max-width: 80%;
+    margin: 40px auto;
+}
+
+.geolocation__info-map {
+    display: block;
+    max-width: 100%;
+    height: 460px;
+}

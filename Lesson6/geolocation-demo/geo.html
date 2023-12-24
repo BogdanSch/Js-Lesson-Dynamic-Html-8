@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="find">Get Location</button>
+    <div id="status"></div>
+    <a id="map" target="_blank"></a>
+    <div id="demoMap" style="height:650px"></div>
+    <script src="./OpenLayers/OpenLayers.js"></script>
+    <script>
+        let latitude = 47.35387; // широта
+        let longitude = 8.43609; // довгота
+        let zoom = 18; // зум
+
+        let fromProjection = new OpenLayers.Projection("EPSG:4326"); // Перетворення з WGS 
+        let toProjection = new OpenLayers.Projection("EPSG:900913"); // до сферичної проекції Меркатора
+
+        // розрахунок позиціонування
+        let position = new OpenLayers.LonLat(longitude, latitude).transform(
+            fromProjection,
+            toProjection
+        );
+
+        map = new OpenLayers.Map("demoMap");
+        let mapnik = new OpenLayers.Layer.OSM();
+        map.addLayer(mapnik);
+
+        // додаємо маркери
+        let markers = new OpenLayers.Layer.Markers("Markers");
+        map.addLayer(markers);
+        markers.addMarker(new OpenLayers.Marker(position));
+        map.setCenter(position, zoom);
+
+        function geoFindMe() {
+            let status = document.querySelector("#status");
+            let mapLink = document.querySelector("#map");
+            mapLink.href = "";
+            mapLink.innerHTML = "";
+            
+            function success(position) {
+                let latitude = position.coords.latitude;
+                let longitude = position.coords.longitude;
+                status.innerHTML = "";
+                mapLink.href = "https://www.openstreetmap.org/#map=18/" +
+                    latitude + "/" + longitude;
+                mapLink.innerHTML =
+                    "Latitude:" + latitude + " °, Longitude: " + longitude + "°";
+
+                // перерахунок позиціонування
+                position = new OpenLayers.LonLat(longitude, latitude).transform(
+                    fromProjection, toProjection
+                );
+
+                // додаємо маркери
+                markers.addMarker(new OpenLayers.Marker(position));
+                map.setCenter(position, zoom);
+            }
+
+            function error() {
+                status.innerHTML = "Неможливо одержати дані геолокації.";
+            }
+
+            // if (!navigator.geolocation) {
+            //     status.innerHTML = "Геолокація не підтримується вашим браузером.";
+            // } else {
+            status.innerHTML = "Йде пошук...";
+            navigator.geolocation.getCurrentPosition(success, error);
+            // }
+        }
+
+        document.querySelector("#find").addEventListener("click", geoFindMe);
+    </script>
+</body>
+
+</html>
