@@ -1,15 +1,16 @@
 "use strict";
 
-import { Map } from "map.js";
+import { Map } from "./map.js";
 
 const geoLocationStatus = document.querySelector(".geolocation__info-status");
-const mapLink = document.querySelector(".geolocation__info-map");
+const mapLink = document.querySelector(".geolocation__info-link");
 const locationsDistnaceContainer = document.querySelector(
   ".geolocation__info-distance"
 );
 const findGeolocationButton = document.querySelector(".btn-geolocation-submit");
-
-let map = new Map(50, 40, 20);
+const baseCoordinates = { latitude: 50, longtitude: 40 };
+let map = new Map(baseCoordinates.latitude, baseCoordinates.longtitude, 20);
+map.drawMap();
 
 function findGeolocation() {
   mapLink.href = "";
@@ -24,13 +25,10 @@ function findGeolocation() {
     mapLink.innerHTML =
       "Latitude:" + latitude + " °, Longitude: " + longitude + "°";
 
-    position = new OpenLayers.LonLat(longitude, latitude).transform(
-      fromProjection,
-      toProjection
-    );
+    map.changePosition(latitude, longitude);
 
-    markers.addMarker(new OpenLayers.Marker(position));
-    map.setCenter(position, zoom);
+    const distance = map.getDistanceFromLatitudeLongtitudeInKm();
+    locationsDistnaceContainer.innerHTML = `Distance: ${distance}km`;
   }
 
   function error() {

@@ -14,24 +14,28 @@
     <div class="wrapper">
         <section class="geolocation">
             <div class="container">
-                <div class="geolocation__wrap">
+                <div class="geolocation__wrap text-center">
                     <h1>Geolocation</h1>
                 </div>
                 <div class="geolocation__form">
-                    <input list="cities" name="citiesInput">
-                    <datalist id="cities">
-                        <option value="Amsterdam">
-                        <option value="Kharkiv">
-                        <option value="Berlin">
-                        <option value="Kyiv">
-                        <option value="Lviv">
-                        <option value="Warszawa">
-                    </datalist>
+                    <div class="mb-3">
+                        <label for="citiesInput" class="form-label">Email address</label>
+                        <input list="cities" name="citiesInput" type="text" id="citiesInput" class="form-control">
+                        <datalist id="cities">
+                            <option value="Amsterdam">
+                            <option value="Kharkiv">
+                            <option value="Berlin">
+                            <option value="Kyiv">
+                            <option value="Lviv">
+                            <option value="Warszawa">
+                        </datalist>
+                    </div>
                     <button class="btn btn-outline-warning btn-geolocation-submit" type="submit">Find Location</button>
                 </div>
                 <div class="geolocation__info">
                     <div class="geolocation__info-status"></div>
-                    <a class="geolocation__info-map" href=""></a>
+                    <div id="demoMap" class="geolocation__info-map"></div>
+                    <a class="geolocation__info-link" href="" target="_blank"></a>
                     <div class="geolocation__info-distance"></div>
                 </div>
             </div>

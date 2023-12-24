@@ -5,13 +5,13 @@ export class Map {
     this.zoom = zoom;
   }
   drawMap() {
-    let fromProjection = new OpenLayers.Projection("EPSG:4326");
-    let toProjection = new OpenLayers.Projection("EPSG:900913");
+    this.fromProjection = new OpenLayers.Projection("EPSG:4326");
+    this.toProjection = new OpenLayers.Projection("EPSG:900913");
 
     let position = new OpenLayers.LonLat(
       this.longitude,
       this.latitude
-    ).transform(fromProjection, toProjection);
+    ).transform(this.fromProjection, this.toProjection);
 
     this.map = new OpenLayers.Map("demoMap");
     let mapnik = new OpenLayers.Layer.OSM();
@@ -22,18 +22,25 @@ export class Map {
     this.map.addLayer(this.markers);
     this.map.setCenter(position, this.zoom);
   }
-  changePosition(position) {
+  changePosition(latitude, longtitude) {
+    this.latitude = latitude;
+    this.longtitude = longtitude;
+    
+    let position = new OpenLayers.LonLat(
+      this.longitude,
+      this.latitude
+    ).transform(this.fromProjection, this.toProjection);
     this.markers.addMarker(new OpenLayers.Marker(position));
     this.map.setCenter(position, this.zoom);
   }
-  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  getDistanceFromLatitudeLongtitudeInKm(baseLatitude, baseLongtitude) {
     let R = 6371; // Radius of the earth in km
-    let dLat = deg2rad(lat2 - lat1); // deg2rad below
-    let dLon = deg2rad(lon2 - lon1);
+    let dLat = this.deg2rad(baseLatitude - this.latitude);
+    let dLon = this.deg2rad(baseLongtitude - this.longtitude);
     let a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) *
-        Math.cos(deg2rad(lat2)) *
+      Math.cos(this.deg2rad(this.longtitude)) *
+        Math.cos(this.deg2rad(this.latitude)) *
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
