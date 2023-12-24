@@ -10,8 +10,8 @@ const locationsDistnaceContainer = document.querySelector(
 const findGeolocationButton = document.querySelector(".btn-geolocation-submit");
 const cityInput = document.querySelector("#cityInput");
 
-const baseCoordinates = { latitude: 50, longtitude: 40 };
-let map = new Map(baseCoordinates.latitude, baseCoordinates.longtitude, 20);
+const baseCoordinates = { latitude: 49.98081, longtitude: 36.25272 };
+let map = new Map(baseCoordinates.latitude, baseCoordinates.longtitude, 10);
 map.drawMap();
 
 function findGeolocation() {
@@ -20,17 +20,20 @@ function findGeolocation() {
 
   function success(coordinates) {
     let latitude = coordinates.latitude;
-    let longitude = coordinates.longitude;
+    let longtitude = coordinates.longtitude;
 
     geoLocationStatus.innerHTML = "";
     mapLink.href =
-      "https://www.openstreetmap.org/#map=18/" + latitude + "/" + longitude;
+      "https://www.openstreetmap.org/#map=18/" + latitude + "/" + longtitude;
     mapLink.innerHTML =
-      "Latitude:" + latitude + " °, Longitude: " + longitude + "°";
+      "Latitude:" + latitude + " °, Longtitude: " + longtitude + "°";
 
-    map.changePosition(latitude, longitude);
+    map.changePosition(latitude, longtitude);
 
-    const distance = map.getDistanceFromLatitudeLongtitudeInKm();
+    const distance = map.getDistanceFromLatitudeLongtitudeInKm(
+      baseCoordinates.latitude,
+      baseCoordinates.longtitude
+    );
     locationsDistnaceContainer.innerHTML = `Distance: ${distance}km`;
   }
 
@@ -53,7 +56,7 @@ function getCityCoordinatesByName(cityName) {
   if (cityName.length > 0) {
     switch (cityName) {
       case "Kharkiv":
-        return { latitude: 49.98081, longtitude: 36.25272 };
+        return baseCoordinates;
       case "Kyiv":
         return { latitude: 50.4501, longtitude: 30.5234 };
       case "Amsterdam":
