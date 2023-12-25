@@ -10,20 +10,27 @@
     object-fit: cover;
 }
 
-#slider {
+.slider {
+    transition: all 0.5s ease;
     position: relative;
-    left: 0;
-    width: 520px;
-    height: 360px;
-    object-fit: cover;
-    transition: all 0.5s;
-    opacity: 1;
+}
+
+.slider__image {
+    position: relative
+}
+
+.slider__minies {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 6px;
 }
 
 .mini {
     width: 80px;
     height: 80px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .fade {
