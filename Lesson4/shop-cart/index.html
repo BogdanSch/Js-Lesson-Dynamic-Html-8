@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop basket</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="cart mb-4">
+                <h1 class="text-center">Shop cart</h1>
+                <div class="cart__inner" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    <!-- Cart items will be displayed here -->
+
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="product card" draggable="true" ondragstart="drag(event)" data-product-name="Rose"
+                        data-product-price="10" data-product-id="0">
+                        <img src="./images/rose.avif" alt="Rose" draggable="false">
+                        <span>Rose, $10</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product card" draggable="true" ondragstart="drag(event)" data-product-name="Tulip"
+                        data-product-price="8" data-product-id="1">
+                        <img src="./images/tulip.jpg" alt="Tulip" draggable="false">
+                        <span>Tulip, $8</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="product card" draggable="true" ondragstart="drag(event)" data-product-name="Sunflower"
+                        data-product-price="15" data-product-id="2">
+                        <img src="./images/sunflower.webp" alt="Sunflower" draggable="false">
+                        <span>Sunflower, $15</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-place-order">Place your order</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
