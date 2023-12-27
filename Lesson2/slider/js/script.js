@@ -8,4 +8,5 @@ const sliderConfig = {
     "./images/landscape-desert.jpg",
   ],
   showMiniatures: true,
+  animationDuration: 1000,
 };

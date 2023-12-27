@@ -6,6 +6,7 @@ let currentSlide = 0;
 let timer;
 let effect = "none";
 let allEffects = [];
+let animationDuration = sliderConfig.animationDuration;
 
 const sliderImage = document.getElementById("sliderImage");
 const nextButton = document.getElementById("next");
@@ -24,7 +25,6 @@ for (let i = 0; i < effectsForm.length; i++) {
     clearEffects();
     if (effectsForm[i].checked) {
       effect = effectsForm[i].value;
-      addEffect();
     }
   });
 }
@@ -53,21 +53,27 @@ function stopSlideshow() {
 }
 
 function showNextSlide() {
-  currentSlide++;
-  if (currentSlide >= imagePathes.length) {
-    currentSlide = 0;
-  }
-  sliderImage.src = imagePathes[currentSlide];
-  clearEffects();
+  addEffect();
+  setTimeout(() => {
+    currentSlide++;
+    if (currentSlide >= imagePathes.length) {
+      currentSlide = 0;
+    }
+    sliderImage.src = imagePathes[currentSlide];
+  }, animationDuration / 2);
+  setTimeout(clearEffects, animationDuration);
 }
 
 function showPreviousSlide() {
-  currentSlide--;
-  if (currentSlide <= 0) {
-    currentSlide = imagePathes.length - 1;
-  }
-  sliderImage.src = imagePathes[currentSlide];
-  clearEffects();
+  addEffect();
+  setTimeout(() => {
+    currentSlide--;
+    if (currentSlide <= 0) {
+      currentSlide = imagePathes.length - 1;
+    }
+    sliderImage.src = imagePathes[currentSlide];
+  }, animationDuration / 2);
+  setTimeout(clearEffects, animationDuration);
 }
 
 function generateMiniatures() {
@@ -93,6 +99,8 @@ if (sliderConfig.showMiniatures) {
   function showNextSlideByMiniature(event) {
     let imageMini = event.target;
     let imageFullName = imageMini.getAttribute("data-sl-img");
+    addEffect();
+    setTimeout(clearEffects, animationDuration);
     sliderImage.src = `./images/${imageFullName}`;
   }
 }
