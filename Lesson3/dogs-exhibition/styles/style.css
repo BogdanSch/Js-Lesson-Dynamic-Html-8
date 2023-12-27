@@ -1,0 +1,41 @@
+.dog-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.dog,
+.exhibition-area {
+    width: 150px;
+    border: 2px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.dog img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.exhibition-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #eee;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.exhibition-area {
+    border: 2px dashed #ccc;
+    background-color: #fff;
+}
+
+.incorrect-placement {
+    border-color: red;
+}
+
+.btn-check-placement {
+    margin-top: 20px;
+}

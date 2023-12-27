@@ -66,7 +66,9 @@ function countEquivalents(productId) {
 function checkout() {
   let total = 0;
   for (const key in equivalents) {
-    total += equivalents[key][0] * equivalents[key][1];
+    if (equivalents[key] != undefined) {
+      total += equivalents[key][0] * equivalents[key][1];
+    }
   }
   alert(`Загальна вартість: $${total}`);
 }

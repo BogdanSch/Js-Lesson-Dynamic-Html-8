@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogs Exhibition</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4">Dogs Exhibition</h1>
+        <div class="dog-container">
+            <div id="dog1" class="dog" draggable="true" ondragstart="drag(event)" data-breed="Labrador">
+                <img src="https://images.saymedia-content.com/.image/t_share/MjAxMjg4MjkxNjI5MTQ3Njc1/labrador-retriever-guide.jpg"
+                    alt="Labrador" class="img-fluid" draggable="false">
+                <p>Labrador</p>
+            </div>
+            <div id="dog2" class="dog" draggable="true" ondragstart="drag(event)" data-breed="Bulldog">
+                <img src="https://cdn.britannica.com/07/234207-050-0037B589/English-bulldog-dog.jpg" alt="Bulldog"
+                    class="img-fluid" draggable="false">
+                <p>Bulldog</p>
+            </div>
+            <div id="dog3" class="dog" draggable="true" ondragstart="drag(event)" data-breed="Beagle">
+                <img src="https://d128mjo55rz53e.cloudfront.net/media/images/blog-breed-beagle_2.max-400x400.format-jpeg.jpg"
+                    alt="Beagle" class="img-fluid" draggable="false">
+                <p>Beagle</p>
+            </div>
+            <div id="dog4" class="dog" draggable="true" ondragstart="drag(event)" data-breed="Poodle">
+                <img src="https://cdn.britannica.com/39/233239-050-50C0C3C5/standard-poodle-dog.jpg" alt="Poodle"
+                    class="img-fluid" draggable="false">
+                <p>Poodle</p>
+            </div>
+        </div>
+        <div class="exhibition-container" ondragover="allowDrop(event)" ondrop="drop(event)">
+            <div id="area1" class="exhibition-area" data-allowed-breed="Labrador">
+                <p>Labrador Area</p>
+            </div>
+            <div id="area2" class="exhibition-area" data-allowed-breed="Bulldog">
+                <p>Bulldog Area</p>
+            </div>
+            <div id="area3" class="exhibition-area" data-allowed-breed="Beagle">
+                <p>Beagle Area</p>
+            </div>
+            <div id="area4" class="exhibition-area" data-allowed-breed="Poodle">
+                <p>Poodle Area</p>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-check-placement mt-3" onclick="checkPlacement()">Check Placement</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
