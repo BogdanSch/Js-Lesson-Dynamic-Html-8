@@ -1,0 +1,15 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.hide {
+    opacity: 0;
+}
+
+#din {
+    max-width: 40%;
+    position: fixed;
+    left: 20px;
+    bottom: 40px;
+}
