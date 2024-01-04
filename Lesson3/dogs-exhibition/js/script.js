@@ -3,9 +3,9 @@
 import { DogsGenerator } from "./dogs-generator.js";
 
 const checkPlacementButton = document.querySelector(".btn-check-placement");
-const exhibitionAreas = document.querySelectorAll(".exhibition-area");
 const exhibitionContainer = document.querySelector(".exhibition-container");
-const dogsContainer = document.querySelector(".dog-container");
+const exhibitionAreas = document.querySelectorAll(".exhibition-area");
+const dogsContainer = document.querySelector(".dogs-container");
 
 const dogs = [
   {
@@ -45,21 +45,34 @@ function drop(event) {
   event.preventDefault();
   const draggedElementId = event.dataTransfer.getData("text");
   const draggedElement = document.getElementById(draggedElementId);
-  const exhibitionArea = event.target;
 
-  const allowedBreed = exhibitionArea.dataset.allowedBreed;
-  const dogBreed = draggedElement.dataset.breed;
+  if (event.target && event.target.classList.contains("exhibition-area")) {
+    const exhibitionArea = event.target;
+    const exhibitionAreaContainer = exhibitionArea.querySelector(
+      ".exhibition-area__container"
+    );
 
-  if (allowedBreed === dogBreed) {
-    exhibitionArea.appendChild(draggedElement);
-    exhibitionArea.classList.remove("incorrect-placement");
-  } else {
-    exhibitionArea.classList.add("incorrect-placement");
+    const allowedBreed = exhibitionArea.dataset.allowedBreed;
+    const dogBreed = draggedElement.dataset.breed;
+
+    if (allowedBreed === dogBreed) {
+      exhibitionAreaContainer.appendChild(draggedElement);
+      exhibitionArea.classList.remove("incorrect-placement");
+    } else {
+      console.log("Incorrect placement!");
+      if (exhibitionAreaContainer.children.length !== 1) {
+        exhibitionArea.classList.add("incorrect-placement");
+      }
+    }
   }
 }
 
-exhibitionContainer.addEventListener("dragover", allowDrop);
-exhibitionContainer.addEventListener("drop", drop);
+exhibitionAreas.forEach((exhibitionArea) => {
+  exhibitionArea.addEventListener("dragover", allowDrop);
+  exhibitionArea.addEventListener("drop", drop);
+});
+// exhibitionContainer.addEventListener("dragover", allowDrop);
+// exhibitionContainer.addEventListener("drop", drop);
 
 function checkPlacement() {
   exhibitionAreas.forEach((area) => {
@@ -70,7 +83,10 @@ function checkPlacement() {
     }
   });
 
-  const incorrectPlacements = document.querySelectorAll(".incorrect-placement");
+  const incorrectPlacements = document.querySelectorAll(
+    ".exhibition-area.incorrect-placement"
+  );
+  console.log(incorrectPlacements);
 
   if (incorrectPlacements.length === 0) {
     alert("Placement is correct! Well done!");

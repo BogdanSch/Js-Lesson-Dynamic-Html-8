@@ -1,4 +1,4 @@
-.dog-container {
+.dogs-container {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
@@ -18,6 +18,11 @@
     min-height: 200px;
     min-width: 200px !important;
 }
+
+/* .exhibition-area__container{
+    min-width: 100%;
+    min-height: 100%;
+} */
 
 .dog img {
     max-width: 100%;
