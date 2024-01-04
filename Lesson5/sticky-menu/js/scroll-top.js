@@ -13,5 +13,3 @@ window.addEventListener("scroll", () => {
     scrollButton.style.opacity = "0";
   }
 });
-
-
