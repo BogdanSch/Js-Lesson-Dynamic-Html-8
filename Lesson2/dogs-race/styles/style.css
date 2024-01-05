@@ -1,13 +1,29 @@
-#dog {
+.dogs__container {
     position: relative;
-    top: 50px;
-    left: 50px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.dog-container {
+    position: relative;
+    max-width: 100%;
+    min-height: 140px;
+    border: 2px solid #2424245e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.dog {
+    position: absolute;
     width: calc(331px / 3);
     height: 80px;
     background-position: 0 0;
-    background-image: url("../images/dog.jpg");
-    animation: play-x infinite steps(3), play-y infinite steps(2), move forwards;
+    background-image: url(../images/dog.jpg);
     animation-duration: 1s, 1s, 15s;
+    left: 80%;
+    top: 20%;
 }
 
 @keyframes play-x {

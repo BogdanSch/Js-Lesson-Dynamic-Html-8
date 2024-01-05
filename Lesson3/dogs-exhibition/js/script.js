@@ -71,12 +71,12 @@ exhibitionAreas.forEach((exhibitionArea) => {
   exhibitionArea.addEventListener("dragover", allowDrop);
   exhibitionArea.addEventListener("drop", drop);
 });
-// exhibitionContainer.addEventListener("dragover", allowDrop);
-// exhibitionContainer.addEventListener("drop", drop);
 
 function checkPlacement() {
   exhibitionAreas.forEach((area) => {
-    if (area.children.length === 1) {
+    if (
+      area.querySelector(".exhibition-area__container").children.length === 0
+    ) {
       area.classList.add("incorrect-placement");
     } else {
       area.classList.remove("incorrect-placement");
