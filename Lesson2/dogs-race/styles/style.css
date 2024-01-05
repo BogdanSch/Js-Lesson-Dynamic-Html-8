@@ -3,7 +3,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    row-gap: 6px;
 }
 
 .dog-container {
@@ -22,7 +22,7 @@
     background-position: 0 0;
     background-image: url(../images/dog.jpg);
     animation-duration: 1s, 1s, 15s;
-    left: 80%;
+    left: 86%;
     top: 20%;
 }
 
@@ -48,7 +48,7 @@
 
 @keyframes move {
     0% {
-        left: 90%;
+        left: 86%;
     }
 
     100% {

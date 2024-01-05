@@ -7,7 +7,7 @@ const startButton = document.querySelector("#startRace");
 const winnerModal = document.querySelector(".winner-modal");
 const winnerModalObject = new bootstrap.Modal(winnerModal);
 
-const finishDistance = 120;
+const finishDistance = 130;
 
 const dogsGenerator = new DogsGenerator(dogsContainer);
 dogsGenerator.generateDogs(4);
@@ -47,7 +47,7 @@ function resetDogs() {
   dogs.forEach((dog) => {
     dog.removeEventListener("animationiteration", determineWinner, false);
     dog.style.animation = "none";
-    dog.style.left = `${finishDistance}px`;
+    // dog.style.left = `${finishDistance}px`;
   });
 }
 
