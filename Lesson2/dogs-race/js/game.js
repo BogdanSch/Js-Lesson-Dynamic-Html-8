@@ -4,6 +4,8 @@ import { DogsGenerator } from "./dogs-generator.js";
 
 const dogsContainer = document.querySelector(".dogs__container");
 const startButton = document.querySelector("#startRace");
+const winnerModal = document.querySelector(".winner-modal");
+const winnerModalObject = new bootstrap.Modal(winnerModal);
 
 const finishDistance = 120;
 
@@ -33,6 +35,10 @@ function determineWinner() {
 
   if (winner) {
     console.log(`Dog ${winner.dataset.track} wins the race!`);
+    winnerModal.querySelector(
+      ".modal-body p"
+    ).innerHTML = `Dog ${winner.dataset.track} wins the race!`;
+    winnerModalObject.show();
     resetDogs();
   }
 }
