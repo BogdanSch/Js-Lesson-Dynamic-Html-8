@@ -43,11 +43,11 @@ export class EdibleGame {
         this.edibleCount++;
         this.counterContainer.innerHTML = `Score: ${this.edibleCount}`;
         if (this.edibleCount === this.maxEdibleCount) {
-          this.endGame("Ви виграли!");
+          this.endGame("You have won the round!");
         }
         this.intervalSpeed = Math.max(100, this.intervalSpeed - 50);
       } else {
-        this.endGame("Ви програли!");
+        this.endGame("You have lost win the round!");
       }
     }
   }

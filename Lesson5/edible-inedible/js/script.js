@@ -29,6 +29,7 @@ let edibleGame = null;
 playButton.addEventListener("click", () => {
   messageContainer.innerHTML = ``;
   counterContainer.innerHTML = ``;
+
   edibleGame = new EdibleGame(
     images,
     imagesContainer,
@@ -38,7 +39,9 @@ playButton.addEventListener("click", () => {
     1000,
     onGameFinished
   );
+
   playButton.style = `opacity: 0;`;
+  imagesContainer.scrollIntoView();
 });
 
 function onGameFinished() {
