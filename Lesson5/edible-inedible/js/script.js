@@ -1,30 +1,46 @@
 import { EdibleGame } from "./game.js";
 import { Image } from "./image.js";
 
+const playButton = document.querySelector("#playButton");
 const imagesContainer = document.getElementById("images");
 const messageContainer = document.getElementById("message");
 const counterContainer = document.getElementById("counter");
 
 const images = [
-  new Image("./images/apple.png", true),
-  new Image("./images/pear.png", true),
-  new Image("./images/scissors.png"),
-  new Image("./images/ball.png"),
-  new Image("./images/pen.png"),
-  new Image("./images/banana.png", true),
-  new Image("./images/hammer.png"),
-  new Image("./images/tomato.png", true),
-  new Image("./images/laptop.png"),
-  new Image("./images/strawberry.png", true),
-  new Image("./images/notebook.png"),
-  new Image("./images/bottle-of-water.png"),
+  new Image("apple.png", true),
+  new Image("pear.png", true),
+  new Image("scissors.png"),
+  new Image("ball.png"),
+  new Image("pen.png"),
+  new Image("banana.png", true),
+  new Image("hammer.png"),
+  new Image("tomato.png", true),
+  new Image("laptop.png"),
+  new Image("strawberry.png", true),
+  new Image("notebook.png"),
+  new Image("bottle-of-water.png"),
+  new Image("baseball.png"),
+  new Image("watermelon.png", true),
+  new Image("pineapple.png", true),
 ];
 
-const edibleGame = new EdibleGame(
-  images,
-  imagesContainer,
-  messageContainer,
-  counterContainer,
-  4,
-  1000
-);
+let edibleGame = null;
+
+playButton.addEventListener("click", () => {
+  messageContainer.innerHTML = ``;
+  counterContainer.innerHTML = ``;
+  edibleGame = new EdibleGame(
+    images,
+    imagesContainer,
+    messageContainer,
+    counterContainer,
+    4,
+    1000,
+    onGameFinished
+  );
+  playButton.style = `opacity: 0;`;
+});
+
+function onGameFinished() {
+  playButton.style = `opacity: 1;`;
+}

@@ -3,26 +3,40 @@ h1 {
 }
 
 img {
-    width: 150px;
-    height: 150px;
-    margin: 10px;
-    cursor: pointer;
+    max-width: 70%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-#message {
+.game__info {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.game__menu {
+    padding-bottom: 100px;
+}
+
+.game__menu-message {
     font-size: 28px;
     font-weight: 700;
 }
 
-#counter {
+.game__menu-counter {
     font-weight: 600;
     font-size: 24px;
 }
 
-#images {
+.game__menu-images {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     column-gap: 40px;
+}
+
+.game__menu-images img {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
 }

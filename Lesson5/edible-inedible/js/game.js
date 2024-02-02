@@ -5,7 +5,8 @@ export class EdibleGame {
     messageContainer,
     counterContainer,
     imagesToShowCount,
-    intervalSpeed
+    intervalSpeed,
+    onGameFinished
   ) {
     this.images = images;
     this.imagesContainer = imagesContainer;
@@ -13,11 +14,15 @@ export class EdibleGame {
     this.counterContainer = counterContainer;
     this.imagesToShowCount = imagesToShowCount;
     this.intervalSpeed = intervalSpeed;
+    this.onGameFinished = onGameFinished;
 
+    this.maxEdibleCount = 12;
     this.edibleCount = 0;
+    this.gameOver = false;
 
     this.createImages();
     this.interval = setInterval(() => this.createImages(), intervalSpeed);
+    this.counterContainer.innerHTML = `Score: 0`;
   }
 
   createImages() {
@@ -26,29 +31,31 @@ export class EdibleGame {
 
     for (let i = 0; i < this.imagesToShowCount; i++) {
       let image = this.shuffledImages[i];
-      const imgElement = document.createElement("img");
-      imgElement.src = image.src;
-      imgElement.addEventListener("click", () => this.handleClick(image));
-      this.imagesContainer.appendChild(imgElement);
+      let imageElement = image.render();
+      imageElement.addEventListener("click", () => this.handleClick(image));
+      this.imagesContainer.appendChild(imageElement);
     }
   }
 
   handleClick(image) {
-    if (image.isEdible) {
-      this.edibleCount++;
-      this.counterContainer.innerHTML = `Counter: ${this.edibleCount}`;
-      if (this.edibleCount === this.shuffledImages.length) {
-        this.endGame("Ви виграли!");
+    if (!this.gameOver) {
+      if (image.isEdible) {
+        this.edibleCount++;
+        this.counterContainer.innerHTML = `Score: ${this.edibleCount}`;
+        if (this.edibleCount === this.maxEdibleCount) {
+          this.endGame("Ви виграли!");
+        }
+        this.intervalSpeed = Math.max(100, this.intervalSpeed - 50);
+      } else {
+        this.endGame("Ви програли!");
       }
-      this.intervalSpeed = Math.max(100, this.intervalSpeed - 50);
-    } else {
-      this.endGame("Ви програли!");
     }
   }
 
   endGame(message) {
     clearInterval(this.interval);
     this.messageContainer.textContent = message;
+    this.onGameFinished();
   }
 
   shuffleArray(array) {
